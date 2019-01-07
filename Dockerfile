@@ -35,7 +35,7 @@ RUN npm i pm2 -g \
     && mkdir -p /app \
     && chmod -R 777 /app \
     && cd /app \
-    && npm i puppeteer
+    && npm i puppeteer --no-save --no-package-lock
 
 # Add user so we don't need --no-sandbox.
 RUN groupadd -r pptruser \
