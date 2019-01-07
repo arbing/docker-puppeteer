@@ -50,6 +50,9 @@ RUN groupadd -r pptruser \
 # Run everything after as non-privileged user.
 USER pptruser
 
+# 安装微软字体
+ADD ./fonts /usr/share/fonts/msfonts
+
 ENTRYPOINT ["dumb-init", "--"]
 
 CMD ["google-chrome-unstable"]
