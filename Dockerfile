@@ -27,34 +27,28 @@ RUN chmod +x /usr/local/bin/dumb-init
 
 # Install puppeteer so it's available in the container.
 #RUN npm i puppeteer
-RUN yarn global add puppeteer && yarn cache clean
 
-ENV NODE_PATH="/usr/local/share/.config/yarn/global/node_modules:${NODE_PATH}"
-
-RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser
-
-# Set language to UTF8
-ENV LANG="C.UTF-8"
-
-RUN mkdir -p /app \
-    && chmod -R 777 /app
-
-# Add user so we don't need --no-sandbox.
-RUN mkdir -p /home/pptruser/Downloads \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /usr/local/share/.config/yarn/global/node_modules \
-    && chown -R pptruser:pptruser /app
-
-# Run everything after as non-privileged user.
-USER pptruser
-
-RUN yarn global add pm2 \
+RUN npm i pm2 -g \
     && pm2 install pm2-logrotate \
     && pm2 set pm2-logrotate:max_size 100M \
-    && pm2 set pm2-logrotate:retain 100
+    && pm2 set pm2-logrotate:retain 100 \
+    && mkdir -p /app \
+    && chmod -R 777 /app \
+    && cd /app \
+    && npm i puppeteer
+
+# Add user so we don't need --no-sandbox.
+RUN groupadd -r pptruser \
+    && useradd -r -g pptruser -G audio,video pptruser \
+    && mkdir -p /home/pptruser/Downloads \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /app/node_modules
 
 # --cap-add=SYS_ADMIN
 # https://docs.docker.com/engine/reference/run/#additional-groups
+
+# Run everything after as non-privileged user.
+USER pptruser
 
 ENTRYPOINT ["dumb-init", "--"]
 
