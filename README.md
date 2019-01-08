@@ -1,6 +1,9 @@
 # docker-puppeteer
 
-Puppeteer in Docker
+<!-- [START badges] -->
 
-- github https://github.com/arbing/docker-puppeteer
-- docker hub https://hub.docker.com/r/arbing/puppeteer
+[![Stars](https://img.shields.io/github/stars/arbing/docker-puppeteer.svg?label=Stars&style=social)](https://github.com/arbing/docker-puppeteer)[![Docker Automated build](https://img.shields.io/docker/automated/arbing/puppeteer.svg)](https://hub.docker.com/r/arbing/puppeteer)[![Docker Build Status](https://img.shields.io/docker/build/arbing/puppeteer.svg)](https://hub.docker.com/r/arbing/puppeteer)[![MicroBadger Size](https://img.shields.io/microbadger/image-size/arbing/puppeteer.svg)](https://hub.docker.com/r/arbing/puppeteer)[![MicroBadger Layers](https://img.shields.io/microbadger/layers/arbing/puppeteer.svg)](https://hub.docker.com/r/arbing/puppeteer)[![AppVeyor](https://img.shields.io/appveyor/ci/arbing/docker-puppeteer.svg)](https://ci.appveyor.com/project/arbing/docker-puppeteer)
+
+<!-- [END badges] -->
+
+Puppeteer in Docker
