@@ -1,5 +1,7 @@
 FROM node:lts-slim
 
+ADD ./unstable.list /etc/apt/sources.list.d/unstable.list
+
 # See https://crbug.com/795759
 RUN apt-get update && apt-get install -yq libgconf-2-4
 
@@ -12,7 +14,7 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
     && apt-get update \
     && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont \
       --no-install-recommends \
-    && apt install fonts-noto-color-emoji \
+    && apt-get -t unstable install -yq fonts-noto fonts-noto-color-emoji fonts-noto-cjk-extra \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get purge --auto-remove -y curl \
     && rm -rf /src/*.deb
