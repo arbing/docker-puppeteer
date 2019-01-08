@@ -53,6 +53,9 @@ USER pptruser
 # 安装微软字体
 ADD ./fonts /usr/share/fonts/msfonts
 
+# 安装表情符号(Emoji)
+apt install fonts-noto-color-emoji
+
 ENTRYPOINT ["dumb-init", "--"]
 
 CMD ["google-chrome-unstable"]
